@@ -13,6 +13,27 @@
   }
 }
 
+/* Navigation css */
+.nav{
+  display: flex;
+  justify-content: center;
+}
+/* Navigation css end */
+
+/* Pasos css */
+.pasos button{
+  text-transform: none;
+  justify-self: center;
+  margin: 1%;
+  padding: 14px 21px;
+}
+
+.pasos .unos{
+  margin: 1%;
+  width: 150px;
+}
+/* Pasos css end */
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
