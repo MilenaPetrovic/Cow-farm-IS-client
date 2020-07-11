@@ -15,17 +15,43 @@
 
 /* Navigation css */
 .nav{
+  margin: 0 auto;
+  padding: 4%;
+  background: rgb(5,218,52);
+  background: linear-gradient(90deg, rgba(5,218,52,1) 21%, rgba(0,255,68,0.8632586823792017) 100%); 
+}
+
+.nav .title{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: bold;
+  color:rgb(17, 29, 29);
+}
+
+.nav .links{
   display: flex;
   justify-content: center;
+}
+
+.nav .routes{  
+  color: darkslategrey;
+  font-size: 20px;
+  margin: 0 auto;
+
 }
 /* Navigation css end */
 
 /* Pasos css */
+.pasos .title{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 400;
+}
+
 .pasos button{
   text-transform: none;
   justify-self: center;
   margin: 1%;
-  padding: 14px 21px;
+  padding: 14px 0px;
+  width: 150px;
 }
 
 .pasos .unos{
@@ -33,6 +59,37 @@
   width: 150px;
 }
 /* Pasos css end */
+
+/* Otpremnica css */
+.otpremnica .osnovneInfo{
+  margin: 0 25%;
+}
+
+.otpremnica .title{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-weight: 400;
+}
+
+.otpremnica .button{
+  text-transform: none;
+  justify-self: center;
+  padding: 14px 0px;
+  width: 150px;
+  margin-top: 2%;
+}
+
+.otpremnica .unos{
+  margin: 1%;
+  width: 150px;
+}
+
+.otpremnica .stavkeInfo{
+  border-width: 3px;
+  border-style: dashed;
+  margin: 5% 20%;
+  padding: 5%;
+}
+/* Otpremnica css end  */
 
 .App-header {
   background-color: #282c34;

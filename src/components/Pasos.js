@@ -1,5 +1,6 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 function formatDate(date) {
@@ -13,7 +14,6 @@ function formatDate(date) {
     if (day.length < 2) 
         day = '0' + day;
 
-    // console.log("datum:::", [year, month, day].join('-'));
     return [year, month, day].join('-');
 }
 
@@ -78,6 +78,11 @@ function Pasos(params){
     return(
         <div className = "pasos">
             <br/>
+            <Typography className="title" variant="h3" component="h2">
+                Pasoš
+            </Typography>
+            <br/>
+            <br/>
             <TextField value = {brojPasosa} id="outlined-basic" label="brojPasosa" variant="outlined"
                 onChange = {handle_brojPasosa} name="brojPasosa" className="unos"
             />
@@ -94,7 +99,6 @@ function Pasos(params){
                 label="Datum izdavanja"
                 type="date"
                 variant="outlined"
-                // className={classes.textField}
                 InputLabelProps={{
                 shrink: true,
                 }}

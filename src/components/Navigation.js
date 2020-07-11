@@ -7,15 +7,21 @@ import '../App.css'
 function Navigation(params) {
     return(
         <div className = "nav">
-            <Breadcrumbs aria-label="breadcrumb">
-                <Link color="inherit" href="/" onClick={handleClick}>
-                    Material-UI
-                </Link>
-                <Link color="inherit" href="/getting-started/installation/" onClick={handleClick}>
-                    Core
-                </Link>
-                <Typography color="textPrimary">Breadcrumb</Typography>
-            </Breadcrumbs>
+            <Typography className="title" variant="h3" component="h2">
+                Informacioni sistem farme Šarulja
+            </Typography>
+            <br/>
+            <div className="links">
+                <Breadcrumbs aria-label="breadcrumb" separator="|">
+                    <Link className="routes" href="/" onClick={handleClick}>
+                        Material-UI
+                    </Link>
+                    <Link className="routes" href="/getting-started/installation/" onClick={handleClick}>
+                        Core
+                    </Link>
+                    <Typography className="routes" >Breadcrumb</Typography>
+                </Breadcrumbs>
+            </div>
         </div>
     )
 }
