@@ -13,6 +13,18 @@
   }
 }
 
+/* Pocetna css */
+.pocetna{
+  display: flex;
+  justify-content: center;
+  margin: 1% 5%;
+}
+
+.pocetna .title{
+  margin-bottom: 5%;
+}
+/* Pocetna css end */
+
 /* Navigation css */
 .nav{
   margin: 0 auto;
@@ -52,6 +64,8 @@
   margin: 1%;
   padding: 14px 0px;
   width: 150px;
+  border-color: rgb(64, 115, 224);
+  border-radius: 0%;
 }
 
 .pasos .unos{
@@ -68,6 +82,7 @@
 .otpremnica .title{
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 400;
+  margin-bottom: 5%;
 }
 
 .otpremnica .button{
@@ -76,6 +91,17 @@
   padding: 14px 0px;
   width: 150px;
   margin-top: 2%;
+  border-color: rgb(64, 115, 224);
+  border-radius: 0%;
+}
+
+.otpremnica .sacuvaj{
+  text-transform: none;
+  justify-self: center;
+  padding: 14px 0px;
+  width: 80%;
+  margin-top: 2%;
+  border-color: rgb(64, 115, 224);
 }
 
 .otpremnica .unos{
@@ -87,7 +113,7 @@
   border-width: 3px;
   border-style: dashed;
   margin: 5% 20%;
-  padding: 5%;
+  padding: 2% 5%;
 }
 /* Otpremnica css end  */
 

@@ -2,6 +2,8 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
 
 function formatDate(date) {
     var d = new Date(date),
@@ -21,6 +23,21 @@ function Pasos(params){
     const [brojPasosa, setBrojPasosa] = React.useState('')
     const [idZivotinje, setIdZivotinje] = React.useState('')
     const [datumIzdavanja, setDatumIzdavanja] = React.useState(Date.now)
+    const [pasos, setPasos] = React.useState({brojPasosa: ''})
+
+    const [openAlert, setOpenAlert] = React.useState('')
+    const [tekstAlerta, setTekstAlerta] = React.useState('')
+    const [tipAlerta, setTipAlerta] = React.useState('')
+
+    const otvoriAlert = (tekst, tip) => {
+        setOpenAlert(true)
+        setTekstAlerta(tekst)
+        setTipAlerta(tip)
+    }
+
+    const zatvoriAlert = () => {
+        setOpenAlert(false)
+    }
 
     const ruta = 'http://localhost:4500/pasosi'
 
@@ -38,7 +55,7 @@ function Pasos(params){
     
     const handle_btnPretrazi = () => {
         if(brojPasosa === ''){
-            alert("Unesite broj pasosa!")
+            otvoriAlert("Unesite broj pasosa!", "error")
             return;
         }
 
@@ -48,7 +65,7 @@ function Pasos(params){
         })
         .then ( (res) => {
             if(res.brojPasosa === undefined){
-                alert(res.message)
+                otvoriAlert(res.message, "error")
                 return;
             }
             setDatumIzdavanja(res.datumIzdavanja)
@@ -56,11 +73,56 @@ function Pasos(params){
         })
     }
 
-    const handle_unesiNovi = () => {
+    const handle_sacuvaj = () => {
+        if(brojPasosa === '' || idZivotinje === '' || datumIzdavanja === ''){
+            otvoriAlert("Unesite sve podatke!", "error")
+            return;
+        }
+
+        pasos.brojPasosa = brojPasosa
+        pasos.idZivotinje = idZivotinje
+        pasos.datumIzdavanja = datumIzdavanja
+
+        fetch(`${ruta}/${brojPasosa}`)
+        .then( (res) => {
+            return res.json();
+        })
+        .then ( (res) => {
+            if(res.brojPasosa === undefined){
+                kreirajPasos()
+            } else {
+                azurirajPasos()     
+            }
+        })
+    }
+
+    const azurirajPasos = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+        
+        var raw = JSON.stringify(pasos);
+        
+        var requestOptions = {
+          method: 'PATCH',
+          headers: myHeaders,
+          body: raw,
+          redirect: 'follow'
+        };
+        
+        fetch(`${ruta}/${brojPasosa}`, requestOptions)
+          .then(response => response.json())
+          .then(result => {
+                otvoriAlert(result.message, "success")
+                pocisti()
+          })
+          .catch(error => otvoriAlert(error, "error"));
+    }
+
+    const kreirajPasos = () => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({"brojPasosa":brojPasosa,"datumIzdavanja":datumIzdavanja,"idZivotinje":idZivotinje});
+        var raw = JSON.stringify(pasos);
 
         var requestOptions = {
         method: 'POST',
@@ -71,9 +133,22 @@ function Pasos(params){
 
         fetch(ruta, requestOptions)
         .then(response => response.json())
-        .then(result => alert("Novi pasos je sacuvan!"))
-        .catch(error => console.log('error', error));
+        .then(result => {
+            otvoriAlert(result.message, "success")
+            pocisti()
+        })
+        .catch(error => otvoriAlert(error, "error"));
+        
     }
+
+    const pocisti = () => {
+        setBrojPasosa('')
+        setDatumIzdavanja(Date.now)
+        setIdZivotinje('')
+        setPasos({brojPasosa:''})
+    }
+
+
 
     return(
         <div className = "pasos">
@@ -83,14 +158,14 @@ function Pasos(params){
             </Typography>
             <br/>
             <br/>
-            <TextField value = {brojPasosa} id="outlined-basic" label="brojPasosa" variant="outlined"
+            <TextField value = {brojPasosa} id="outlined-basic" label="Broj Pasoša" variant="outlined"
                 onChange = {handle_brojPasosa} name="brojPasosa" className="unos"
             />
             <Button variant="outlined" size = "large"
                 onClick = {handle_btnPretrazi} name="btnPretrazi"
-            >Pretrazi</Button>
+            >Pretraži</Button>
             <br/>
-            <TextField value = {idZivotinje} id="outlined-basic" label="idZivotinje" variant="outlined"
+            <TextField value = {idZivotinje} id="outlined-basic" label="ID Životinje" variant="outlined"
                 onChange = {handle_idZivotinje} name="idZivotinje" className="unos"
             />
             <TextField
@@ -108,8 +183,20 @@ function Pasos(params){
             <br/>
             <br/>            
             <Button variant="outlined" size = "large"
-                onClick = {handle_unesiNovi} name = "btnUnesi"
-            >Unesi novi pasos</Button>
+                onClick = {handle_sacuvaj} name = "btnSacuvaj"
+            >Sačuvaj pasoš</Button>
+
+            {
+                openAlert ? 
+                <Snackbar open={openAlert} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                    autoHideDuration={2000} onClose={zatvoriAlert}>
+                    <Alert severity={tipAlerta}>
+                        {tekstAlerta}
+                    </Alert>
+                </Snackbar>
+                :
+                <div></div> 
+            }
         </div>
     )
 }

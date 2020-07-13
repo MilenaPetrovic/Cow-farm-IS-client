@@ -1,10 +1,10 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import '../App.css'
 
-function Navigation(params) {
+function Navigation(params) {    
     return(
         <div className = "nav">
             <Typography className="title" variant="h3" component="h2">
@@ -13,22 +13,20 @@ function Navigation(params) {
             <br/>
             <div className="links">
                 <Breadcrumbs aria-label="breadcrumb" separator="|">
-                    <Link className="routes" href="/" onClick={handleClick}>
-                        Material-UI
+                    <Link to="/" className="routes">
+                        Početna
                     </Link>
-                    <Link className="routes" href="/getting-started/installation/" onClick={handleClick}>
-                        Core
+                    <Link to="/otpremnica" className="routes">
+                        Otpremnica
                     </Link>
-                    <Typography className="routes" >Breadcrumb</Typography>
+                    <Link to="/pasos" className="routes">
+                        Pasoš
+                    </Link>
                 </Breadcrumbs>
             </div>
         </div>
     )
 }
 
-function handleClick(event) {
-  event.preventDefault();
-  console.info('You clicked a breadcrumb.');
-}
 
 export default Navigation
