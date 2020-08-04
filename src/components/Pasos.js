@@ -54,7 +54,7 @@ function Pasos(params){
     }
     
     const handle_btnPretrazi = () => {
-        if(brojPasosa === ''){
+        if(brojPasosa.trim() === ''){
             otvoriAlert("Unesite broj pasosa!", "error")
             return;
         }
@@ -74,7 +74,7 @@ function Pasos(params){
     }
 
     const handle_sacuvaj = () => {
-        if(brojPasosa === '' || idZivotinje === '' || datumIzdavanja === ''){
+        if(brojPasosa.trim() === '' || idZivotinje.trim() === '' || datumIzdavanja.trim() === ''){
             otvoriAlert("Unesite sve podatke!", "error")
             return;
         }

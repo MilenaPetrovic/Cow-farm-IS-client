@@ -93,8 +93,8 @@ function Otpremnica(params){
     }
     
     const handle_btnPronadjiMlekaru = () => {
-        if(sifraMlekare === ''){
-            otvoriAlert("Unesite sifru mlekare!", "error")
+        if(sifraMlekare.trim() === ''){
+            otvoriAlert("Unesite šifru mlekare!", "error")
             return;
         }
 
@@ -112,8 +112,8 @@ function Otpremnica(params){
     }
 
     const handle_btnPronadjiOtpremnicu = () => {
-        if(brojOtpremnice === ''){
-            otvoriAlert("Unesite sifru otpremnice!", "error")
+        if(brojOtpremnice.trim() === ''){
+            otvoriAlert("Unesite šifru otpremnice!", "error")
             return;
         }
 
@@ -173,8 +173,8 @@ function Otpremnica(params){
     }
     
     const handle_btnPronadjiZaposlenog = () => {
-        if(sifraZaposlenog === ''){
-            otvoriAlert("Unesite sifru zaposlenog!", "error")
+        if(sifraZaposlenog.trim() === ''){
+            otvoriAlert("Unesite šifru zaposlenog!", "error")
             return;
         }
 
@@ -225,7 +225,7 @@ function Otpremnica(params){
     const [selected, setSelected] = React.useState(-1);
     const isSelected = (num) => selected === num;
 
-    const emptyRows = 5;
+    const emptyRows = 3;
     const handleClick = (event, num) => {
         event.target.type === "checkbox" ?
             event.target.checked ? setSelected(num) : setSelected(-1) 
@@ -249,12 +249,12 @@ function Otpremnica(params){
     }
 
     const handle_btnDodajStavku = () => { 
-        if(kolicina === 0 || naziv === '' || jedinicaMere === ''){
+        if(kolicina === 0 || naziv.trim() === '' || jedinicaMere.trim() === ''){
             otvoriAlert("Unesite sve podatke!", "error")
             return;
         }
         if(kolicina === undefined || isNaN(kolicina)){
-            otvoriAlert("Niste pravilno uneli kolicinu!", "error")
+            otvoriAlert("Niste pravilno uneli količinu!", "error")
             return;
         }
 
@@ -321,12 +321,12 @@ function Otpremnica(params){
     }
 
     const handle_btnSacuvaj = () => {
-        if(brojOtpremnice === '' || nazivZaposlenog === '' || pttMesta === '' || vozac === '' || nazivZaposlenog === '' || skladiste === ''){
+        if(brojOtpremnice.trim() === '' || nazivZaposlenog.trim() === '' || pttMesta.trim() === '' || vozac.trim() === '' || nazivZaposlenog.trim() === '' || skladiste.trim() === ''){
             otvoriAlert("Niste popunili sve podatke", "error")
             return;
         }
         if(isNaN(pttMesta)){
-            otvoriAlert("Niste pravilno uneli ptt", "error")
+            otvoriAlert("Niste pravilno uneli ptt!", "error")
             return;
         }
 
